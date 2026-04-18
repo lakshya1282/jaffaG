@@ -230,13 +230,7 @@ prevBtn.addEventListener('click', () => {
 });
 
 // Category Click
-document.querySelectorAll('.category-list li').forEach(item => {
-    item.addEventListener('click', (e) => {
-        document.querySelector('.category-list li.active').classList.remove('active');
-        e.target.classList.add('active');
-        // Optionally switch image sets here
-    });
-});
+// Category switching is now handled by direct page links in the HTML
 
 // Handle resize to recalculate slider
 window.addEventListener('resize', updateCatalogSlider);
