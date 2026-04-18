@@ -62,7 +62,19 @@ for (let i = 0; i < frameCount; i++) {
 
 function render() {
     context.clearRect(0, 0, canvas.width, canvas.height);
-    const img = images[heroData.frame];
+    let targetFrame = Math.round(heroData.frame);
+    let img = images[targetFrame];
+
+    // Fallback to closest loaded frame to avoid black screen abyss
+    if (!img || !img.complete) {
+        for (let i = targetFrame - 1; i >= 0; i--) {
+            if (images[i] && images[i].complete) {
+                img = images[i];
+                break;
+            }
+        }
+    }
+
     if (img && img.complete) {
         // Center-cover logic for canvas
         const imgRatio = img.width / img.height;
@@ -93,27 +105,32 @@ window.addEventListener('resize', () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     render();
+    ScrollTrigger.refresh();
 });
 
 // Scroll Animation
 gsap.registerPlugin(ScrollTrigger);
 
-// Scroll Animation
-gsap.registerPlugin(ScrollTrigger);
+// Keep ScrollTrigger aligned with Lenis' smooth-scroll position.
+lenis.on('scroll', ScrollTrigger.update);
+
+const heroScrollDistance = frameCount * 28;
 
 const heroTl = gsap.timeline({
     scrollTrigger: {
         trigger: ".scroll-hero",
         start: "top top",
-        end: "bottom bottom",
-        scrub: 1,
+        end: `+=${heroScrollDistance}`,
+        pin: true,
+        scrub: true,
+        anticipatePin: 1,
     }
 });
 
-// Primary animation: Frames span the entire timeline duration (12)
+// Primary animation: Frames finish slightly before the timeline ends
 heroTl.to(heroData, {
     frame: frameCount - 1,
-    duration: 12,
+    duration: 11.5,
     snap: "frame",
     ease: "none",
     onUpdate: render
