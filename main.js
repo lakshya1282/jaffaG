@@ -105,7 +105,7 @@ const heroTl = gsap.timeline({
         trigger: ".scroll-hero",
         start: "top top",
         end: "bottom bottom",
-        scrub: 1, 
+        scrub: 1,
     }
 });
 
@@ -122,7 +122,7 @@ heroTl.to(heroData, {
 heroTl.to(".hero-eyebrow", {
     fontSize: "clamp(0.8rem, 2vw, 1.2rem)",
     letterSpacing: "0.2rem",
-    y: -20,
+    y: -150,
     duration: 3,
     ease: "power2.inOut"
 }, 0.5);
@@ -157,7 +157,7 @@ heroTl.to(".hero-text-overlay", {
 window.addEventListener('DOMContentLoaded', () => {
     // Initial reveal animation for navbar
     gsap.from(".navbar", { y: -50, opacity: 0, duration: 1, ease: "power3.out" });
-    
+
     // The scroll-hero content is handled by ScrollTrigger now
 });
 
@@ -282,7 +282,7 @@ stepButtons.forEach(btn => {
 
         // Update content with GSAP fade
         const data = stepData[btn.dataset.step];
-        
+
         // Timeline for synchronized transition
         const tl = gsap.timeline();
 
@@ -294,7 +294,7 @@ stepButtons.forEach(btn => {
                 stepDescription.textContent = data.text;
                 stepImg1.src = data.img1;
                 stepImg2.src = data.img2;
-                
+
                 gsap.to([stepDescription, "#step-img-1", "#step-img-2"], {
                     opacity: 1,
                     y: 0,
@@ -312,7 +312,7 @@ const showcaseCards = document.querySelectorAll('.showcase-card');
 
 showcaseCards.forEach((card, index) => {
     const isLeft = card.classList.contains('slide-left');
-    
+
     gsap.to(card, {
         scrollTrigger: {
             trigger: card,
@@ -322,9 +322,9 @@ showcaseCards.forEach((card, index) => {
         opacity: 1,
         x: 0,
         y: 0,
-        startAt: { 
+        startAt: {
             x: isLeft ? -100 : 100, // Slide from left or right
-            opacity: 0 
+            opacity: 0
         },
         duration: 1.2,
         ease: "power3.out",
@@ -354,11 +354,11 @@ const filterPills = document.querySelectorAll('.filter-pill');
 filterPills.forEach(pill => {
     pill.addEventListener('click', () => {
         const category = pill.textContent;
-        
+
         // Update pills
         filterPills.forEach(p => p.classList.remove('active'));
         pill.classList.add('active');
-        
+
         // Filter cards
         showcaseCards.forEach(card => {
             const cardCat = card.dataset.category;
@@ -368,7 +368,7 @@ filterPills.forEach(pill => {
                 gsap.to(card, { opacity: 0, scale: 0.95, display: 'none', duration: 0.4 });
             }
         });
-        
+
         ScrollTrigger.refresh();
     });
 });
@@ -391,22 +391,22 @@ const projectForm = document.querySelector('#projectForm');
 if (projectForm) {
     projectForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        
+
         const submitBtn = projectForm.querySelector('.btn-quote');
         const originalText = submitBtn.textContent;
-        
+
         // Disable button and show loading
         submitBtn.disabled = true;
         submitBtn.textContent = 'Sending...';
-        
+
         // Simulate API call
         setTimeout(() => {
             submitBtn.textContent = 'Project Request Sent!';
             submitBtn.style.backgroundColor = '#4CAF50'; // Success green
             submitBtn.style.color = '#ffffff';
-            
+
             projectForm.reset();
-            
+
             // Revert after 3 seconds
             setTimeout(() => {
                 submitBtn.disabled = false;
