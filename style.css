@@ -110,7 +110,7 @@ body {
     text-decoration: none;
     color: var(--text-dim);
     font-size: 0.9rem;
-    text-transform: lowercase;
+    text-transform: capitalize;
     transition: color 0.3s ease;
 }
 
