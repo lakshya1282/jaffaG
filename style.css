@@ -1987,60 +1987,8 @@ body {
     margin: 0;
     line-height: 1.1;
 }
-
-/* Navigation Buttons - Glass & Shimmer */
-.nav-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 64px;
-    height: 64px;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    cursor: pointer;
-    z-index: 10;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    overflow: hidden;
-}
-
-.nav-btn::after {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -150%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-    transition: left 0.6s ease;
-}
-
-.nav-btn:hover::after {
-    left: 100%;
-}
-
-.nav-btn:hover {
-    background: #f5c518;
-    color: #000;
-    border-color: #f5c518;
-    transform: translateY(-50%) scale(1.08);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-.nav-btn.prev {
-    left: 30px;
-}
-
-.nav-btn.next {
-    right: 30px;
-}
-
 /* Thumbnail Strip */
+
 .immersive-thumbs {
     display: flex;
     gap: 1.8rem;
@@ -2090,17 +2038,9 @@ body {
         font-size: 2.8rem;
     }
 
-    .nav-btn {
-        width: 50px;
-        height: 50px;
-    }
 }
 
-@media (max-width: 768px) {
-    .nav-btn {
-        display: none;
-    }
-}
+
 
 
 
@@ -2166,3 +2106,633 @@ body {
 .portfolio-main-content.fade-out {
     opacity: 0;
 }
+
+/* =========================================================
+   MOBILE & TABLET RESPONSIVENESS OVERHAUL
+   Breakpoints: 1024px | 768px | 480px
+   All rules ADDITIVE — desktop (>1024px) is untouched.
+   ========================================================= */
+
+/* --- Hamburger Button (hidden on desktop) --- */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 1100;
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+}
+
+.hamburger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: #ffffff;
+    border-radius: 2px;
+    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-origin: center;
+}
+
+.hamburger.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.hamburger.open span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.hamburger.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* --- Mobile Nav Overlay --- */
+.mobile-nav-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 10, 10, 0.98);
+    z-index: 1050;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.mobile-nav-overlay.open {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.mobile-nav-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 1rem;
+}
+
+.mobile-nav-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    text-align: center;
+}
+
+.mobile-nav-link {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 8vw, 3.5rem);
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    min-height: 44px;
+    line-height: 1.2;
+    transition: color 0.3s ease;
+    letter-spacing: -0.5px;
+}
+
+.mobile-nav-link:hover {
+    color: #e6b905;
+}
+
+.mobile-nav-cta {
+    margin-top: 2rem;
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    border: 1px solid #e6b905;
+    border-radius: 50px;
+    color: #e6b905;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    min-height: 44px;
+    transition: all 0.3s ease;
+}
+
+.mobile-nav-cta:hover {
+    background: #e6b905;
+    color: #000;
+}
+
+/* =========================================================
+   TABLET — max-width: 1024px (additions beyond existing ones)
+   ========================================================= */
+@media (max-width: 1024px) {
+    /* Universal image fix */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Navbar */
+    .navbar {
+        padding: 1.5rem 2rem;
+        background: rgba(10, 10, 10, 0.85);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+    .nav-cta {
+        display: none;
+    }
+
+    .mobile-nav-overlay {
+        display: block;
+    }
+
+    /* Hero scroll indicator */
+    .scroll-indicator {
+        bottom: 1.5rem;
+        font-size: 0.6rem;
+    }
+
+    /* Showcase section — fix card opacity (GSAP disabled on mobile) */
+    .showcase-card {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+
+    /* Catalog section — outer padding fix */
+    .catalog-section {
+        padding: 2rem 0 2rem 0;
+    }
+
+    .catalog-container {
+        border-radius: 0;
+        padding: 4rem 2rem;
+    }
+
+    /* Steps nav overflow */
+    .steps-nav-bar {
+        overflow-x: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        padding-bottom: 0.5rem;
+        flex-wrap: nowrap;
+    }
+
+    .steps-nav-bar::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* Info Grid — 2 col on tablet */
+    .info-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Portfolio showcase overlap margin */
+    .portfolio-showcase {
+        margin-top: -80px;
+        padding: 0 2rem 60px;
+    }
+
+    /* Portfolio modal fix — item name */
+    .item-name {
+        font-size: 1.6rem;
+    }
+}
+
+/* =========================================================
+   MOBILE — max-width: 768px
+   ========================================================= */
+@media (max-width: 768px) {
+    /* Universal */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Navbar */
+    .navbar {
+        padding: 1rem 1.5rem;
+    }
+
+    /* Hero text tweaks */
+    .hero-eyebrow {
+        font-size: clamp(1rem, 5vw, 2rem);
+        letter-spacing: 0.4rem;
+    }
+
+    .hero-text-overlay .brand-subtitle {
+        font-size: clamp(0.7rem, 2.5vw, 1.1rem);
+        letter-spacing: 0.3rem;
+        margin-top: 1rem;
+    }
+
+    .scroll-hero {
+        height: 400vh;
+    }
+
+    /* About section */
+    .about-section {
+        padding: 3rem 1.5rem;
+        text-align: center;
+    }
+
+    .about-bottom-left {
+        max-width: 100%;
+        text-align: left;
+    }
+
+    .about-bottom-right {
+        justify-content: center;
+    }
+
+    .btn-more {
+        margin: 0 auto;
+    }
+
+    /* Catalog */
+    .catalog-section {
+        padding: 1.5rem 0;
+    }
+
+    .catalog-container {
+        padding: 3rem 1.5rem;
+        gap: 2.5rem;
+    }
+
+    .catalog-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2rem;
+    }
+
+    .catalog-desc {
+        max-width: 100%;
+    }
+
+    .slider-nav {
+        align-self: flex-end;
+    }
+
+    /* Steps */
+    .steps-section {
+        padding: 3rem 1.5rem;
+    }
+
+    .steps-nav-bar {
+        gap: 0.6rem;
+    }
+
+    .step-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    .steps-right {
+        gap: 1rem;
+    }
+
+    /* Showcase */
+    .showcase-section {
+        padding: 3rem 1.5rem;
+    }
+
+    .showcase-card {
+        opacity: 1 !important;
+        transform: none !important;
+        height: 320px;
+        margin-top: 0 !important;
+    }
+
+    .filter-pills {
+        flex-wrap: wrap;
+        gap: 0.8rem;
+    }
+
+    .filter-pill {
+        padding: 0.6rem 1.2rem;
+        min-height: 44px;
+        font-size: 0.85rem;
+    }
+
+    .showcase-header {
+        margin-bottom: 1.5rem;
+    }
+
+    .showcase-title {
+        text-align: left;
+    }
+
+    .btn-portfolio {
+        padding: 0.9rem 2rem;
+        font-size: 1rem;
+        min-height: 44px;
+    }
+
+    /* Park City Yellow */
+    .info-section-yellow {
+        padding: 3rem 0;
+    }
+
+    .info-yellow-container {
+        padding: 3rem 1.5rem;
+        border-radius: 0;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .info-headline {
+        font-size: clamp(1.8rem, 5vw, 3rem);
+    }
+
+    .btn-primary-dark {
+        width: 100%;
+        justify-content: center;
+        padding: 1rem 2rem;
+        min-height: 44px;
+    }
+
+    /* Contact */
+    .contact-section {
+        padding: 4rem 1.5rem;
+    }
+
+    .contact-headline {
+        font-size: clamp(2rem, 6vw, 3rem);
+        margin: 1rem 0 2.5rem;
+    }
+
+    .video-overlay-text {
+        padding: 1.5rem;
+    }
+
+    .video-overlay-text h3 {
+        font-size: 1.3rem;
+    }
+
+    .btn-quote {
+        min-height: 44px;
+        font-size: 1rem;
+    }
+
+    /* Footer */
+    .footer {
+        padding: 3rem 1.5rem 1.5rem;
+    }
+
+    .footer-tagline {
+        font-size: 1rem;
+    }
+
+    .footer-top {
+        padding-bottom: 3rem;
+    }
+
+    /* Portfolio page */
+    .portfolio-hero {
+        height: 60vh;
+    }
+
+    .portfolio-tagline {
+        font-size: clamp(1.6rem, 6vw, 2.5rem);
+        letter-spacing: -1px;
+    }
+
+    .portfolio-showcase {
+        margin-top: -60px;
+        padding: 0 1.5rem 50px;
+    }
+
+    .portfolio-grid {
+        gap: 1.5rem;
+    }
+
+    /* Modal */
+    .modal-nav-bar {
+        padding: 1.5rem 2rem;
+    }
+
+    .modal-title {
+        font-size: 2.2rem;
+    }
+
+    .item-name {
+        font-size: 1.3rem;
+    }
+
+    /* Project detail page */
+    .project-hero-tagline {
+        font-size: 1rem;
+        letter-spacing: 0.05em;
+    }
+
+    .project-gallery {
+        padding: 4rem 1rem;
+    }
+
+    .master-title {
+        font-size: 1.8rem;
+        letter-spacing: 0.04em;
+    }
+
+    .master-overlay {
+        padding: 2rem 1.5rem;
+    }
+
+    .thumb-item {
+        flex: 0 0 auto;
+    }
+
+    /* Vertical thumbnail stack on mobile — no animation */
+    .immersive-thumbs {
+        flex-direction: column;
+        overflow-x: visible;
+        overflow-y: visible;
+        gap: 1rem;
+        padding: 1rem 0;
+        mask-image: none;
+        -webkit-mask-image: none;
+    }
+
+    .thumb-item {
+        width: 100%;
+        flex: 0 0 auto;
+        aspect-ratio: 16 / 9;
+        border-radius: 10px;
+        transition: none;
+        transform: none !important;
+    }
+
+    .thumb-item.active {
+        transform: none !important;
+        box-shadow: 0 0 0 2px #f5c518;
+    }
+
+    /* --- Disable parallax on card images (mobile) --- */
+    /* Reset the oversized parallax height so images sit fixed */
+    .card-parallax-container img {
+        height: 100% !important;
+        top: 0 !important;
+        transform: none !important;
+        position: absolute;
+    }
+
+    /* Lock the GSAP-applied yPercent transform */
+    .showcase-card .card-parallax-container img {
+        transform: translateY(0) !important;
+        will-change: auto;
+    }
+
+    /* Keep card titles (card-content) fixed — disable any overlay transform */
+    .card-content {
+        transform: none !important;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.3) 60%, transparent 100%);
+    }
+}
+
+/* =========================================================
+   SMALL MOBILE — max-width: 480px
+   ========================================================= */
+@media (max-width: 480px) {
+    /* Navbar */
+    .navbar {
+        padding: 1rem 1.2rem;
+    }
+
+    /* Hero */
+    .hero-eyebrow {
+        letter-spacing: 0.2rem;
+    }
+
+    .scroll-indicator {
+        display: none;
+    }
+
+    /* About */
+    .hero-subheading {
+        font-size: clamp(1.6rem, 7vw, 2.5rem);
+    }
+
+    /* Catalog */
+    .catalog-container {
+        padding: 2.5rem 1.2rem;
+    }
+
+    .catalog-title {
+        font-size: clamp(2rem, 8vw, 3rem);
+        letter-spacing: -1px;
+    }
+
+    .slide {
+        height: 260px;
+    }
+
+    /* Steps */
+    .steps-section {
+        padding: 2.5rem 1.2rem;
+    }
+
+    .steps-headline {
+        font-size: clamp(1.8rem, 7vw, 2.5rem);
+    }
+
+    .step-btn {
+        padding: 0.5rem 0.8rem;
+        font-size: 0.75rem;
+    }
+
+    /* Showcase */
+    .showcase-section {
+        padding: 2.5rem 1.2rem;
+    }
+
+    .showcase-card {
+        height: 260px;
+    }
+
+    .card-content h3 {
+        font-size: 1.2rem;
+    }
+
+    /* Park City */
+    .info-section-yellow {
+        padding: 2rem 0;
+    }
+
+    .info-yellow-container {
+        padding: 2.5rem 1.2rem;
+    }
+
+    .info-headline {
+        font-size: clamp(1.5rem, 6vw, 2.5rem);
+    }
+
+    .info-block h3 {
+        font-size: 1.2rem;
+    }
+
+    /* Contact */
+    .contact-section {
+        padding: 3rem 1.2rem;
+    }
+
+    .contact-headline {
+        font-size: clamp(1.8rem, 7vw, 2.5rem);
+    }
+
+    /* Footer */
+    .footer {
+        padding: 2.5rem 1.2rem 1.2rem;
+    }
+
+    .footer-col h4 {
+        font-size: 0.9rem;
+        margin-bottom: 1.2rem;
+    }
+
+    /* Portfolio */
+    .portfolio-hero {
+        height: 50vh;
+    }
+
+    .portfolio-showcase {
+        margin-top: -40px;
+        padding: 0 1.2rem 40px;
+    }
+
+    .card-inner-meta h3 {
+        font-size: 1.5rem;
+    }
+
+    /* Project detail */
+    .project-gallery {
+        padding: 3rem 1rem;
+    }
+
+    .master-title {
+        font-size: 1.4rem;
+    }
+
+    .gallery-master {
+        border-radius: 12px;
+    }
+    /* thumb-item vertical layout inherited from 768px block */
+}
+

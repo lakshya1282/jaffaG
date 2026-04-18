@@ -28,10 +28,29 @@
                 <li><a href="index.html#contact">Contact</a></li>
             </ul>
             <div class="nav-cta">
-                <a href="portfolio.html" class="nav-cta-btn">Back to Portfolio</a>
+                <a href="index.html#contact" class="nav-cta-btn">Contact Us</a>
             </div>
+
+            <!-- Hamburger Menu Button -->
+            <button class="hamburger" id="hamburger-btn" aria-label="Open navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </nav>
+
+    <!-- Mobile Nav Overlay -->
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+        <div class="mobile-nav-inner">
+            <ul class="mobile-nav-links">
+                <li><a href="index.html#about" class="mobile-nav-link">About</a></li>
+                <li><a href="portfolio.html" class="mobile-nav-link">Portfolio</a></li>
+                <li><a href="index.html#contact" class="mobile-nav-link">Contact</a></li>
+            </ul>
+            <a href="index.html#contact" class="mobile-nav-cta">Contact Us</a>
+        </div>
+    </div>
 
     <!-- Hero Section -->
     <section class="project-hero">
@@ -64,8 +83,8 @@
                 </div>
 
                 <!-- Navigation Buttons -->
-                <div class="nav-btn prev"><i class="fas fa-chevron-left"></i></div>
-                <div class="nav-btn next"><i class="fas fa-chevron-right"></i></div>
+                
+                
             </div>
 
             <!-- Thumbnail Bar -->
@@ -116,6 +135,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="project-detail.js"></script>
+    <script src="mobile-nav.js"></script>
 </body>
 </html>
 

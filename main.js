@@ -17,10 +17,11 @@ requestAnimationFrame(raf);
 
 // Initialize AOS (Animate On Scroll)
 AOS.init({
-    duration: 1000,
+    duration: 600,
     once: true,
-    offset: 100,
-    easing: 'ease-out-cubic'
+    offset: 80,
+    easing: 'ease-out',
+    disable: window.innerWidth < 768 ? true : false
 });
 
 /* Old Hero Logic (Commented out)
@@ -306,47 +307,57 @@ stepButtons.forEach(btn => {
     });
 });
 
-// --- Project Showcase Animations ---
+// --- Project Showcase Animations (Desktop only) ---
 // 1. Entrance Staggered Slide
 const showcaseCards = document.querySelectorAll('.showcase-card');
 
-showcaseCards.forEach((card, index) => {
-    const isLeft = card.classList.contains('slide-left');
+if (window.innerWidth > 1024) {
+    showcaseCards.forEach((card, index) => {
+        const isLeft = card.classList.contains('slide-left');
 
-    gsap.to(card, {
-        scrollTrigger: {
-            trigger: card,
-            start: "top 85%", // Start animation when card is 85% from top
-            toggleActions: "play none none none",
-        },
-        opacity: 1,
-        x: 0,
-        y: 0,
-        startAt: {
-            x: isLeft ? -100 : 100, // Slide from left or right
-            opacity: 0
-        },
-        duration: 1.2,
-        ease: "power3.out",
-        delay: (index % 2) * 0.2 // Slight staggering between pairs
+        gsap.to(card, {
+            scrollTrigger: {
+                trigger: card,
+                start: "top 85%",
+                toggleActions: "play none none none",
+            },
+            opacity: 1,
+            x: 0,
+            y: 0,
+            startAt: {
+                x: isLeft ? -100 : 100,
+                opacity: 0
+            },
+            duration: 1.2,
+            ease: "power3.out",
+            delay: (index % 2) * 0.2
+        });
     });
-});
-
-// 2. Image Parallax
-const parallaxImages = document.querySelectorAll('.card-parallax-container img');
-
-parallaxImages.forEach(img => {
-    gsap.to(img, {
-        scrollTrigger: {
-            trigger: img.parentElement,
-            start: "top bottom",
-            end: "bottom top",
-            scrub: true
-        },
-        yPercent: 20, // Move image down slightly (creates the "up" look when scrolling down)
-        ease: "none"
+} else {
+    // On mobile/tablet, just make sure all cards are visible
+    showcaseCards.forEach(card => {
+        card.style.opacity = '1';
+        card.style.transform = 'none';
     });
-});
+}
+
+// 2. Image Parallax (Desktop only — disabled on mobile)
+if (window.innerWidth > 1024) {
+    const parallaxImages = document.querySelectorAll('.card-parallax-container img');
+
+    parallaxImages.forEach(img => {
+        gsap.to(img, {
+            scrollTrigger: {
+                trigger: img.parentElement,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true
+            },
+            yPercent: 20,
+            ease: "none"
+        });
+    });
+}
 
 // 3. Filter Logic (Simple reveal)
 const filterPills = document.querySelectorAll('.filter-pill');
@@ -373,17 +384,19 @@ filterPills.forEach(pill => {
     });
 });
 
-// --- Section 05: Park City Yellow Slide ---
-gsap.from(".info-yellow-container", {
-    scrollTrigger: {
-        trigger: ".info-section-yellow",
-        start: "top 80%",
-        toggleActions: "play none none none"
-    },
-    xPercent: 100,
-    duration: 1.5,
-    ease: "power4.out"
-});
+// --- Section 05: Park City Yellow Slide (Desktop only) ---
+if (window.innerWidth > 1024) {
+    gsap.from(".info-yellow-container", {
+        scrollTrigger: {
+            trigger: ".info-section-yellow",
+            start: "top 80%",
+            toggleActions: "play none none none"
+        },
+        xPercent: 100,
+        duration: 1.5,
+        ease: "power4.out"
+    });
+}
 
 // --- Section 06: Project Form Feedback ---
 const projectForm = document.querySelector('#projectForm');
@@ -395,19 +408,16 @@ if (projectForm) {
         const submitBtn = projectForm.querySelector('.btn-quote');
         const originalText = submitBtn.textContent;
 
-        // Disable button and show loading
         submitBtn.disabled = true;
         submitBtn.textContent = 'Sending...';
 
-        // Simulate API call
         setTimeout(() => {
             submitBtn.textContent = 'Project Request Sent!';
-            submitBtn.style.backgroundColor = '#4CAF50'; // Success green
+            submitBtn.style.backgroundColor = '#4CAF50';
             submitBtn.style.color = '#ffffff';
 
             projectForm.reset();
 
-            // Revert after 3 seconds
             setTimeout(() => {
                 submitBtn.disabled = false;
                 submitBtn.textContent = originalText;
@@ -415,5 +425,29 @@ if (projectForm) {
                 submitBtn.style.color = '';
             }, 3000);
         }, 1500);
+    });
+}
+
+// --- Hamburger Menu Toggle ---
+const hamburgerBtn = document.getElementById('hamburger-btn');
+const mobileNavOverlay = document.getElementById('mobile-nav-overlay');
+
+if (hamburgerBtn && mobileNavOverlay) {
+    hamburgerBtn.addEventListener('click', () => {
+        const isOpen = hamburgerBtn.classList.toggle('open');
+        mobileNavOverlay.classList.toggle('open', isOpen);
+        hamburgerBtn.setAttribute('aria-expanded', isOpen);
+        // Prevent background scroll when menu is open
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+    });
+
+    // Close menu when a link is clicked
+    mobileNavOverlay.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburgerBtn.classList.remove('open');
+            mobileNavOverlay.classList.remove('open');
+            hamburgerBtn.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        });
     });
 }

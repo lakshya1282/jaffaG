@@ -35,8 +35,26 @@
                     <div class="nav-cta">
                         <button class="nav-cta-btn open-modal-trigger">Choose Project</button>
                     </div>
+                    <!-- Hamburger Menu Button -->
+                    <button class="hamburger" id="hamburger-btn" aria-label="Open navigation menu" aria-expanded="false">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
                 </div>
             </nav>
+
+            <!-- Mobile Nav Overlay -->
+            <div class="mobile-nav-overlay" id="mobile-nav-overlay">
+                <div class="mobile-nav-inner">
+                    <ul class="mobile-nav-links">
+                        <li><a href="index.html#about" class="mobile-nav-link">About</a></li>
+                        <li><a href="portfolio.html" class="mobile-nav-link">Portfolio</a></li>
+                        <li><a href="index.html#contact" class="mobile-nav-link">Contact</a></li>
+                    </ul>
+                    <a href="index.html#contact" class="mobile-nav-cta">Contact Us</a>
+                </div>
+            </div>
 
             <div class="portfolio-main-content">
                 <!-- Portfolio Header -->
@@ -744,5 +762,6 @@
     <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="portfolio.js"></script>
+    <script src="mobile-nav.js"></script>
 </body>
 </html>
