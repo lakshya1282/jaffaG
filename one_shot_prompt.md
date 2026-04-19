@@ -1,6 +1,6 @@
-# Comprehensive One-Shot Prompt for Premium Real Estate Website (JAFFA GROUPS)
+# Comprehensive One-Shot Prompt for Premium Real Estate Website (JAFFA GROUP)
 
-You are an expert Frontend Developer and UI/UX Designer. Your task is to build a high-end, cinematic, and premium real estate website called "JAFFA GROUPS". The website features a "Quiet Luxury" black-and-white aesthetic with a premium yellow accent (`#e6b905`), subtle GSAP animations, a scroll-triggered hero canvas sequence, and modern typography.
+You are an expert Frontend Developer and UI/UX Designer. Your task is to build a high-end, cinematic, and premium real estate website called "JAFFA GROUP". The website features a "Quiet Luxury" black-and-white aesthetic with a premium yellow accent (`#e6b905`), subtle GSAP animations, a scroll-triggered hero canvas sequence, and modern typography.
 
 Please create the following three files exactly as provided below: `index.html`, `style.css`, and `main.js`. 
 
@@ -26,8 +26,8 @@ The site uses the following external libraries which are already included via CD
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JAFFA GROUPS | Premium Real Estate</title>
-    <meta name="description" content="JAFFA GROUPS - Designing architecture for life. Premium real estate and architectural design.">
+    <title>JAFFA GROUP | Premium Real Estate</title>
+    <meta name="description" content="JAFFA GROUP - Designing architecture for life. Premium real estate and architectural design.">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,7 +45,7 @@ The site uses the following external libraries which are already included via CD
         <div class="nav-container">
             <div class="logo">
                 <span class="logo-text">JAFFA</span>
-                <span class="logo-sub">GROUPS</span>
+                <span class="logo-sub">GROUP</span>
             </div>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
@@ -67,7 +67,7 @@ The site uses the following external libraries which are already included via CD
             <div class="scroll-hero-content">
                 <div class="hero-text-overlay">
                     <div class="hero-eyebrow">It's called</div>
-                    <h1 class="brand-title">JAFFA GROUPS</h1>
+                    <h1 class="brand-title">JAFFA GROUP</h1>
                     <p class="brand-subtitle">Designing architecture for life</p>
                 </div>
             </div>
@@ -434,7 +434,7 @@ The site uses the following external libraries which are already included via CD
                 <div class="footer-brand">
                     <div class="logo">
                         <span class="logo-text">JAFFA</span>
-                        <span class="logo-sub">GROUPS</span>
+                        <span class="logo-sub">GROUP</span>
                     </div>
                     <p class="footer-tagline">Designing architecture <br> for life</p>
                 </div>
@@ -464,14 +464,14 @@ The site uses the following external libraries which are already included via CD
 
                     <div class="footer-col">
                         <h4>Contact</h4>
-                        <p>hello@jaffa.groups</p>
+                        <p>hello@jaffa.group</p>
                         <p>+1 800 555 ARCH</p>
                     </div>
                 </div>
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; 2024 Jaffa Groups Architecture. All rights reserved.</p>
+                <p>&copy; 2024 JAFFA GROUP Architecture. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -1517,7 +1517,7 @@ heroTl.to(".hero-eyebrow", {
     ease: "power2.inOut"
 }, 0.5);
 
-// Phase 2: "JAFFA GROUPS" reveals and centers
+// Phase 2: "JAFFA GROUP" reveals and centers
 heroTl.to(".hero-text-overlay .brand-title", {
     opacity: 1,
     y: 0,
@@ -1777,3 +1777,5 @@ if (projectForm) {
 2. Form the exact structure by saving the three blocks above into their respective files (`index.html`, `style.css`, `main.js`).
 3. Populate the required assets or replace them with suitable high-end, real estate architectural imagery. Note the image sizes, classes, and folder structure. It requires `244` sequential `.jpg` images to properly utilize the Canvas hero feature.
 4. Execute via a local web server to avoid CORS constraints on the HTML5 `<canvas>` tags and ensure smooth Lenis & GSAP frame renderings.
+
+

@@ -145,7 +145,7 @@ heroTl.to(".hero-eyebrow", {
     ease: "power2.inOut"
 }, 0.5);
 
-// Phase 2: "JAFFA GROUPS" reveals and centers
+// Phase 2: "JAFFA GROUP" reveals and centers
 heroTl.to(".hero-text-overlay .brand-title", {
     opacity: 1,
     y: 0,
@@ -245,13 +245,7 @@ prevBtn.addEventListener('click', () => {
 });
 
 // Category Click
-document.querySelectorAll('.category-list li').forEach(item => {
-    item.addEventListener('click', (e) => {
-        document.querySelector('.category-list li.active').classList.remove('active');
-        e.target.classList.add('active');
-        // Optionally switch image sets here
-    });
-});
+// Category switching is now handled by direct page links in the HTML
 
 // Handle resize to recalculate slider
 window.addEventListener('resize', updateCatalogSlider);
@@ -466,6 +460,7 @@ if (hamburgerBtn && mobileNavOverlay) {
         });
     });
 }
+
 // --- Section 07: Circular Testimonials ---
 const testimonialData = [
     {
@@ -500,3 +495,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const testimonials = new CircularTestimonials('circular-testimonials', testimonialData);
     }
 });
+
+
+
