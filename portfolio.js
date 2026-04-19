@@ -30,19 +30,21 @@ const initAnimations = () => {
     tl.to('.hero-bg img', { scale: 1.1, duration: 2.5 }, 0)
       .from('.portfolio-tagline .line span', { y: 100, opacity: 0, stagger: 0.15 }, 0.5);
 
-    // Image Parallax
-    document.querySelectorAll('.portfolio-card').forEach(card => {
-        const img = card.querySelector('img');
-        gsap.fromTo(img, { yPercent: 15 }, {
-            yPercent: -15,
-            scrollTrigger: {
-                trigger: card,
-                scrub: true,
-                start: "top bottom",
-                end: "bottom top"
-            }
+    // Image Parallax (Desktop only)
+    if (window.innerWidth > 1024) {
+        document.querySelectorAll('.portfolio-card').forEach(card => {
+            const img = card.querySelector('img');
+            gsap.fromTo(img, { yPercent: 15 }, {
+                yPercent: -15,
+                scrollTrigger: {
+                    trigger: card,
+                    scrub: true,
+                    start: "top bottom",
+                    end: "bottom top"
+                }
+            });
         });
-    });
+    }
 
     // Modal Interactions
     const modalTl = gsap.timeline({ paused: true });
