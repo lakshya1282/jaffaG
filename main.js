@@ -175,8 +175,6 @@ heroTl.to(".hero-text-overlay", {
 window.addEventListener('DOMContentLoaded', () => {
     // Initial reveal animation for navbar
     gsap.from(".navbar", { y: -50, opacity: 0, duration: 1, ease: "power3.out" });
-
-    // The scroll-hero content is handled by ScrollTrigger now
 });
 
 
@@ -468,3 +466,37 @@ if (hamburgerBtn && mobileNavOverlay) {
         });
     });
 }
+// --- Section 07: Circular Testimonials ---
+const testimonialData = [
+    {
+        quote: "JAFFA GROUPS transformed our vision into a breathtaking reality. Their attention to detail and commitment to 'Quiet Luxury' is unparalleled.",
+        name: "Sarah Jenkins",
+        designation: "Homeowner, Park City",
+        src: "Hero Photos-20260418T055411Z-3-001/Hero Photos/showcase 7.webp"
+    },
+    {
+        quote: "The seamless integration of modern architecture with the natural landscape is what truly sets them apart. A masterpiece in every sense.",
+        name: "Michael Chen",
+        designation: "Real Estate Investor",
+        src: "Hero Photos-20260418T055411Z-3-001/Hero Photos/showcase 2.webp"
+    },
+    {
+        quote: "From the initial research to completion, the process was professional and inspiring. They don't just build houses; they create environments.",
+        name: "Elena Rodriguez",
+        designation: "Architectural Critic",
+        src: "Hero Photos-20260418T055411Z-3-001/Hero Photos/showcase 3.webp"
+    },
+    {
+        quote: "The best architectural firm I've worked with. Their ability to balance function and visual calm is truly world-class.",
+        name: "David Thompson",
+        designation: "Developer",
+        src: "Hero Photos-20260418T055411Z-3-001/Hero Photos/showcase 4 .webp"
+    }
+];
+
+// Initialize Testimonials when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    if (typeof CircularTestimonials !== 'undefined') {
+        const testimonials = new CircularTestimonials('circular-testimonials', testimonialData);
+    }
+});
