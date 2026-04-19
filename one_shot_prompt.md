@@ -45,7 +45,7 @@ The site uses the following external libraries which are already included via CD
         <div class="nav-container">
             <div class="logo">
                 <span class="logo-text">JAFFA</span>
-                <span class="logo-sub">GROUPS</span>
+                <span class="logo-sub">GROUP</span>
             </div>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
@@ -434,7 +434,7 @@ The site uses the following external libraries which are already included via CD
                 <div class="footer-brand">
                     <div class="logo">
                         <span class="logo-text">JAFFA</span>
-                        <span class="logo-sub">GROUPS</span>
+                        <span class="logo-sub">GROUP</span>
                     </div>
                     <p class="footer-tagline">Designing architecture <br> for life</p>
                 </div>
@@ -464,7 +464,7 @@ The site uses the following external libraries which are already included via CD
 
                     <div class="footer-col">
                         <h4>Contact</h4>
-                        <p>hello@jaffa.groups</p>
+                        <p>hello@jaffa.group</p>
                         <p>+1 800 555 ARCH</p>
                     </div>
                 </div>
@@ -1777,4 +1777,5 @@ if (projectForm) {
 2. Form the exact structure by saving the three blocks above into their respective files (`index.html`, `style.css`, `main.js`).
 3. Populate the required assets or replace them with suitable high-end, real estate architectural imagery. Note the image sizes, classes, and folder structure. It requires `244` sequential `.jpg` images to properly utilize the Canvas hero feature.
 4. Execute via a local web server to avoid CORS constraints on the HTML5 `<canvas>` tags and ensure smooth Lenis & GSAP frame renderings.
+
 
